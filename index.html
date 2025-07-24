@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamiltag Sports Market</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-3xl font-bold text-red-600">Hamiltag Market 🦁</h1>
+    <nav class="space-x-4">
+      <a href="#cleats" class="hover:underline">Cleats</a>
+      <a href="#balls" class="hover:underline">Soccer Balls</a>
+      <a href="#gloves" class="hover:underline">Soccer Gloves</a>
+      <a href="#basketballs" class="hover:underline">Basketballs</a>
+      <a href="#boxing" class="hover:underline">Boxing</a>
+      <a href="C:\Users\Erslan\Desktop\Hamiltag\Hamiltag-1\contact.html" class="hover:underline">Contact Us</a>
+      <a href="https://docs.google.com/document/d/1uhmcTqOEpCIHqsprsiTaGGq7E7nKyGkk9GJEzI2_h2o/edit?tab=t.0"
+        class="hover:underline">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-6 space-y-12">
+
+    <!-- Section Template -->
+    <section id="cleats">
+      <h2 class="text-2xl font-bold mb-4">👟 Cleats (12)</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Cleats -->
+        <!-- You can duplicate this div and change the brand/price/image -->
+        <!-- We'll render 12 dynamically -->
+      </div>
+    </section>
+
+    <section id="balls">
+      <h2 class="text-2xl font-bold mb-4">⚽ Soccer Balls (6)</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Soccer Balls -->
+      </div>
+    </section>
+
+    <section id="gloves">
+      <h2 class="text-2xl font-bold mb-4">🧤 Soccer Gloves (6)</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Gloves -->
+      </div>
+    </section>
+
+    <section id="basketballs">
+      <h2 class="text-2xl font-bold mb-4">🏀 Basketballs (6)</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Basketballs -->
+      </div>
+    </section>
+
+    <section id="boxing">
+      <h2 class="text-2xl font-bold mb-4">🥊 Boxing Gloves (1)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Boxing Gloves -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center p-4">
+    &copy; 2025 Hamiltag Sports. All rights reserved.
+  </footer>
+
+  <!-- JavaScript to Render Products and Handle Cart Logic -->
+  <script>
+    const data = {
+      cleats: [
+        "Nike", "Adidas", "Puma", "New Balance", "Under Armour", "Mizuno",
+        "Reebok", "Diadora", "Umbro", "Kelme", "Asics", "Lotto"
+      ],
+      balls: ["Nike", "Adidas", "Puma", "Mitre", "Select", "Wilson"],
+      gloves: ["Nike", "Adidas", "Reusch", "Uhlsport", "Puma", "Storelli"],
+      basketballs: ["Spalding", "Nike", "Wilson", "Rawlings", "Adidas", "Under Armour"],
+      boxing: ["Everlast"]
+    };
+
+    const createProductCard = (brand, price, type) => {
+      const safeId = `${type}-${brand}`.replace(/\s+/g, '-').toLowerCase();
+      return `
+        <div class="bg-white shadow p-4 rounded-xl text-center">
+<img src="img/${brand.toLowerCase().replaceAll(' ', '-')}-${type.toLowerCase().replaceAll(' ', '-')}.jpg" class="mb-2 mx-auto rounded h-32 object-contain" />
+          <h3 class="font-semibold text-lg">${brand} ${type}</h3>
+          <p class="text-sm text-gray-600">$<span id="${safeId}-price">${price}</span></p>
+          <div class="flex justify-center items-center mt-2 space-x-2">
+            <button onclick="updateQty('${safeId}', -1, ${price})" class="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded">-</button>
+            <span id="${safeId}-qty">0</span>
+            <button onclick="updateQty('${safeId}', 1, ${price})" class="px-3 py-1 bg-red-600 text-white hover:bg-red-700 rounded">+</button>
+          </div>
+          <p class="text-sm mt-1 text-gray-700">Total: $<span id="${safeId}-total">0</span></p>
+        </div>
+      `;
+    };
+
+    const renderAll = () => {
+      const sections = {
+        cleats: document.querySelector("#cleats .grid"),
+        balls: document.querySelector("#balls .grid"),
+        gloves: document.querySelector("#gloves .grid"),
+        basketballs: document.querySelector("#basketballs .grid"),
+        boxing: document.querySelector("#boxing .grid")
+      };
+
+      data.cleats.forEach((brand, i) =>
+        sections.cleats.innerHTML += createProductCard(brand, 50 + i * 5, "Cleat"));
+      data.balls.forEach((brand, i) =>
+        sections.balls.innerHTML += createProductCard(brand, 20 + i * 3, "Ball"));
+      data.gloves.forEach((brand, i) =>
+        sections.gloves.innerHTML += createProductCard(brand, 30 + i * 4, "Gloves"));
+      data.basketballs.forEach((brand, i) =>
+        sections.basketballs.innerHTML += createProductCard(brand, 25 + i * 4, "Basketball"));
+      data.boxing.forEach((brand) =>
+        sections.boxing.innerHTML += createProductCard(brand, 55, "Boxing Gloves"));
+    };
+
+    const updateQty = (id, change, price) => {
+      const qtyElem = document.getElementById(`${id}-qty`);
+      const totalElem = document.getElementById(`${id}-total`);
+      let qty = parseInt(qtyElem.innerText) + change;
+      qty = qty < 0 ? 0 : qty;
+      qtyElem.innerText = qty;
+      totalElem.innerText = qty * price;
+    };
+
+    renderAll();
+  </script>
+</body>
+
+</html>

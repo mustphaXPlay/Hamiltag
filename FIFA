@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FIFA Player Card</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="fifa-card">
+    <div class="top-section">
+      <div class="rating">92</div>
+      <div class="position">ST</div>
+      <img src="https://flagcdn.com/w320/pt.png" alt="Portugal Flag" class="flag">
+    </div>
+    <img src="https://cdn.sofifa.net/players/208/01/03/23_120.png" class="player-img" alt="Cristiano Ronaldo">
+    <h2 class="player-name">Cristiano Ronaldo</h2>
+    <div class="stats">
+      <div>PAC <span>91</span></div>
+      <div>SHO <span>93</span></div>
+      <div>PAS <span>82</span></div>
+      <div>DRI <span>88</span></div>
+      <div>DEF <span>35</span></div>
+      <div>PHY <span>78</span></div>
+    </div>
+  </div>
+</body>
+</html>
+body {
+  background-color: #0a0a0a;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.fifa-card {
+  background: linear-gradient(145deg, #1a1a1a, #333);
+  border-radius: 20px;
+  width: 300px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 0 15px #00ff88;
+  text-align: center;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.rating, .position {
+  color: gold;
+}
+
+.flag {
+  width: 35px;
+  border-radius: 4px;
+}
+
+.player-img {
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 15px;
+}
+
+.player-name {
+  font-size: 1.3em;
+  margin: 5px 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  font-size: 16px;
+  background: #222;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.stats div {
+  display: flex;
+  justify-content: space-between;
+}
+
+
