@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hamiltag Market – Signup / Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md" id="form-container">
+    <!-- SIGN UP FORM -->
+    <div id="signup-form">
+      <h2 class="text-2xl font-bold mb-4 text-center text-red-600">Sign Up</h2>
+      <form>
+        <input type="text" placeholder="Full Name" class="w-full p-2 mb-3 border rounded" required />
+        <input type="email" placeholder="Email" class="w-full p-2 mb-3 border rounded" required />
+        <input type="password" placeholder="Password" class="w-full p-2 mb-3 border rounded" required />
+        <input type="date" placeholder="Birthday" class="w-full p-2 mb-3 border rounded" required />
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded">Create Account</button>
+      </form>
+      <p class="mt-4 text-center text-sm text-gray-600">
+        Already have an account?
+        <button onclick="toggleForms()" class="text-red-500 hover:underline">Login!</button>
+      </p>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form" class="hidden">
+      <h2 class="text-2xl font-bold mb-4 text-center text-red-600">Login</h2>
+      <form>
+        <input type="email" placeholder="Email" class="w-full p-2 mb-3 border rounded" required />
+        <input type="password" placeholder="Password" class="w-full p-2 mb-3 border rounded" required />
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded">Login</button>
+      </form>
+      <p class="mt-4 text-center text-sm text-gray-600">
+        Don’t have an account?
+        <button onclick="toggleForms()" class="text-red-500 hover:underline">Sign Up!</button>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function toggleForms() {
+      const signupForm = document.getElementById("signup-form");
+      const loginForm = document.getElementById("login-form");
+      signupForm.classList.toggle("hidden");
+      loginForm.classList.toggle("hidden");
+    }
+  </script>
+
+</body>
+</html>
